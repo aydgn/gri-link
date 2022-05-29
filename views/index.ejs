@@ -42,7 +42,7 @@
           <button type="submit" class="submit" data-submit>Shorten</button>
         </form>
 
-        <%# TODO: Make tables great again %> 
+        <%# TODO: Make tables great again %>
         <table>
           <thead>
             <tr>
@@ -53,14 +53,14 @@
           </thead>
           <tbody>
             <% shortUrls.forEach(url => { %>
-              <tr>
-                <td><a href="<%= url.full %>"><%= url.full %></a></td>
-                <td><a href="<%= url.short %>"><%= url.short %></a></td>
-                <td><%= url.clicks _%></td>
-              </tr>
+            <tr>
+              <td><a href="<%= url.full %>"><%= url.full %></a></td>
+              <td><a href="<%= url.short %>"><%= url.short %></a></td>
+              <td><%= url.clicks _%></td>
+            </tr>
             <% }) %>
           </tbody>
-          </table>
+        </table>
       </div>
     </main>
   </body>
