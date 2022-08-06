@@ -22,7 +22,7 @@ app.use((req, res, next) => {
     "Content-Security-Policy": "upgrade-insecure-requests",
     "X-Content-Security-Policy": "upgrade-insecure-requests",
     "X-WebKit-CSP": "upgrade-insecure-requests",
-    Link: "<assets/scripts/main.js>; rel=preload; as=script; nopush, <https://unpkg.com/>; rel=preconnect",
+    Link: "<https://unpkg.com/@picocss/pico@1.5.3/css/pico.classless.min.css>; rel=preload; as=style; nopush;"
   });
   next();
 });
