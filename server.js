@@ -14,9 +14,22 @@ app.set("view engine", "ejs");
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(views));
 
+app.use((req, res, next) => {
+  res.set({
+    "Access-Control-Allow-Origin": "*",
+    "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept",
+    "Access-Control-Allow-Methods": "GET, POST",
+    "Content-Security-Policy": "upgrade-insecure-requests",
+    "X-Content-Security-Policy": "upgrade-insecure-requests",
+    "X-WebKit-CSP": "upgrade-insecure-requests",
+    Link: "<assets/scripts/main.js>; rel=preload; as=script; nopush, <https://unpkg.com/>; rel=preconnect",
+  });
+  next();
+});
+
 app.get("/", async (req, res) => {
   const shortUrls = await ShortUrl.find();
-  res.render("index", { shortUrls: shortUrls });
+  res.render("index", { shortUrls });
 });
 
 app.post("/shortenUrl", async (req, res) => {
@@ -26,10 +39,8 @@ app.post("/shortenUrl", async (req, res) => {
   if (!URL) return res.send("Please enter a URL");
 
   // Check if ID is already in use
-  if (ID) {
-    if (await ShortUrl.findOne({ short: ID })) {
-      return res.send("ID is already in use");
-    }
+  if (ID && (await ShortUrl.findOne({ short: ID }))) {
+    return res.send("ID is already in use");
   }
 
   ShortUrl.create({ full: URL, short: ID || nanoid(3) }, (err, data) => {
