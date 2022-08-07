@@ -95,7 +95,7 @@
               <td><a href="<%= url.full %>"><%= url.full %></a></td>
               <td class="">
                 <a href="<%= url.short %>"><%= url.short %></a>
-                <span style="text-align: center" data-url="<%= url.short %>" data-tooltip="Copy to clipboard">📋</span>
+                <span style="text-align: center" data-url="<%= url.short %>" data-tooltip="Copy to clipboard" onclick="copy(this)">📋</span>
               </td>
               <td><%= url.clicks _%></td>
             </tr>
