@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="preconnect" href="//cdnjs.cloudflare.com" />
     <!-- Primary Meta Tags -->
-    <title>Gri Links — Gricreative URL Shortener Service</title>
-    <meta name="title" content="Gri Links — Gricreative URL Shortener Service" />
+    <title>Latest Gri Links — Gricreative URL Shortener Service</title>
+    <meta name="title" content="Latest Gri Links — Gricreative URL Shortener Service" />
     <meta
       name="description"
       content="Gri Links is a simple URL shortener that allows you to shorten your long URLs. It is a single page website that store short links and redirect them."
@@ -19,7 +19,7 @@
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://grilink.herokuapp.com/" />
-    <meta property="og:title" content="Gri Links — Gricreative URL Shortener Service" />
+    <meta property="og:title" content="Latest Gri Links — Gricreative URL Shortener Service" />
     <meta
       property="og:description"
       content="Gri Links is a simple URL shortener that allows you to shorten your long URLs. It is a single page website that store short links and redirect them."
@@ -29,7 +29,7 @@
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image" />
     <meta property="twitter:url" content="https://grilink.herokuapp.com/" />
-    <meta property="twitter:title" content="Gri Links — Gricreative URL Shortener Service" />
+    <meta property="twitter:title" content="Latest Gri Links — Gricreative URL Shortener Service" />
     <meta
       property="twitter:description"
       content="Gri Links is a simple URL shortener that allows you to shorten your long URLs. It is a single page website that store short links and redirect them."
@@ -58,15 +58,7 @@
     <style>
       header .container {
         display: flex;
-        flex-direction: row;
         justify-content: space-between;
-      }
-
-      button[type="submit"] {
-        font-weight: bold;
-      }
-      th:not(:first-child) {
-        text-align: center;
       }
     </style>
   </head>
@@ -82,35 +74,34 @@
           </svg>
         </a>
         <span class="logo__text">URL Shortener</span>
-        <a href="/latest">Latest links</a>
+        <a href="/">Return to Home</a>
       </div>
     </header>
     <main>
       <div class="container">
-        <h1 class="title">Shorten Links</h1>
-        <p>
-          <strong>Gri Links</strong> for transforming long, ugly links into nice, memorable and trackable short URLs.
-          Use it to shorten links for any social media platforms, blogs, SMS, emails, ads, or pretty much anywhere else
-          you want to share them. After shorterning the URL, you can check how many clicks it received.
-        </p>
-        <form action="/shortenUrl" method="post" class="form" data-form>
-          <div class="grid">
-            <input
-              type="url"
-              class="url"
-              name="url"
-              minlength="11"
-              placeholder="https://www.example.com"
-              autofocus
-              autocomplete="off"
-              required
-              data-url-input
-            />
-            <input type="text" class="id" name="id" autocomplete="off" placeholder="ID (Not Required)" />
-          </div>
-          <button type="submit" class="submit" data-submit>Shorten</button>
-        </form>
-        <div data-success></div>
+        <h1 class="title">Latest Links</h1>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Link</th>
+              <th>Short ID</th>
+              <th>Clicks</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% shortUrls.forEach(url => { %>
+            <tr>
+              <td><a href="<%= url.full %>"><%= url.full %></a></td>
+              <td class="">
+                <a href="<%= url.short %>"><%= url.short %></a>
+                <span style="text-align: center" data-url="<%= url.short %>" data-tooltip="Copy to clipboard">📋</span>
+              </td>
+              <td><%= url.clicks _%></td>
+            </tr>
+            <% }) %>
+          </tbody>
+        </table>
       </div>
     </main>
   </body>

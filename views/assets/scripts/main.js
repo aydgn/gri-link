@@ -1,18 +1,16 @@
 const form = document.querySelector("[data-form]");
-const input = document.querySelector("[data-input]");
+const urlInput = document.querySelector("[data-url-input]");
 const submit = document.querySelector("[data-submit]");
-
-input.addEventListener("input", () => {
-  /* If the input is valid, enable the submit button */
-  // input.validity.valid && input.value.length > 10 ? submit.disabled = false : submit.disabled = true;
-});
+const success = document.querySelector("[data-success]");
 
 /* Form validtion */
-form.addEventListener("submit", (e) => {
-  if (input.validity.valid && input.value.length > 10) {
-    console.log("Link:", input.value);
+form?.addEventListener("submit", (e) => {
+ if (!(input.validity.valid && input.value.length > 10)) return
+
     form.value = ""; // Clear the input
-  } else {
-    console.log("Form is invalid");
-  }
+    submit.setAttribute("aria-busy", "true")
 });
+
+const params = new URLSearchParams(window.location.search);
+const shortID = params.get("success");
+

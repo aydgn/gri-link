@@ -28,6 +28,7 @@ app.use((req, res, next) => {
     "X-Content-Type-Options": "nosniff",
     "X-Frame-Options": "SAMEORIGIN",
     "X-WebKit-CSP": "upgrade-insecure-requests",
+    "Cache-Control": "max-age=3600, must-revalidate"
   });
   next();
 });
@@ -35,6 +36,11 @@ app.use((req, res, next) => {
 app.get("/", async (req, res) => {
   const shortUrls = await ShortUrl.find();
   res.render("index", { shortUrls });
+});
+
+app.get("/latest", async (req, res) => {
+  const shortUrls = await ShortUrl.find();
+  res.render("latest", { shortUrls });
 });
 
 app.post("/shortenUrl", async (req, res) => {
@@ -53,7 +59,7 @@ app.post("/shortenUrl", async (req, res) => {
       console.log("🦄 Error:", err);
     } else {
       console.log("✅ URL sent to DB:", data);
-      res.status(200).redirect("/");
+      res.status(200).redirect(`/?success=${data.short}`);
     }
   });
 });
