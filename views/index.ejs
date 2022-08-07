@@ -110,7 +110,18 @@
           </div>
           <button type="submit" class="submit" data-submit>Shorten</button>
         </form>
-        <div data-success></div>
+        <div data-success>
+          <template>
+            <div class="success__text">
+              <p>
+                🎉 Your link has been shortened: <a href="#" target="_blank">#</a>
+                <span style="text-align: center" data-url="" data-tooltip="Copy to clipboard" onclick="copy(this)"
+                  >📋</span
+                >
+              </p>
+            </div>
+          </template>
+        </div>
       </div>
     </main>
   </body>
