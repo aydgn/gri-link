@@ -5,6 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="preconnect" href="//cdnjs.cloudflare.com" />
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/picocss/1.5.3/pico.min.css" as="style" />
+
     <!-- Primary Meta Tags -->
     <title>Latest Gri Links — Gricreative URL Shortener Service</title>
     <meta name="title" content="Latest Gri Links — Gricreative URL Shortener Service" />
@@ -95,7 +97,13 @@
               <td><a href="<%= url.full %>"><%= url.full %></a></td>
               <td class="">
                 <a href="<%= url.short %>"><%= url.short %></a>
-                <span style="text-align: center" data-url="<%= url.short %>" data-tooltip="Copy to clipboard" onclick="copy(this)">📋</span>
+                <span
+                  style="text-align: center"
+                  data-url="<%= url.short %>"
+                  data-tooltip="Copy to clipboard"
+                  onclick="copy(this)"
+                  >📋</span
+                >
               </td>
               <td><%= url.clicks _%></td>
             </tr>
