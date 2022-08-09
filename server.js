@@ -22,21 +22,21 @@ app.use((req, res, next) => {
     "Access-Control-Allow-Methods": "GET, POST",
     "Access-Control-Allow-Origin": "https://grilink.herokuapp.com/",
     "Content-Security-Policy": "upgrade-insecure-requests",
-    "Permissions-Policy": "accelerometer=(), ambient-light-sensor=(), autoplay=(), battery=(), camera=(), cross-origin-isolated=(), display-capture=(), document-domain=(), encrypted-media=(), execution-while-not-rendered=(), execution-while-out-of-viewport=(), fullscreen=(), geolocation=(), gyroscope=(), keyboard-map=(), magnetometer=(), microphone=(), midi=(), navigation-override=(), payment=(), picture-in-picture=(), publickey-credentials-get=(), screen-wake-lock=(), sync-xhr=(), usb=(), web-share=(), xr-spatial-tracking=(), clipboard-read=(), gamepad=(), speaker-selection=(), conversion-measurement=(), focus-without-user-activation=(), hid=(), idle-detection=(), interest-cohort=(), serial=(), sync-script=(), trust-token-redemption=(), window-placement=(), vertical-scroll=()",
+    "Permissions-Policy":
+      "accelerometer=(), ambient-light-sensor=(), autoplay=(), battery=(), camera=(), cross-origin-isolated=(), display-capture=(), document-domain=(), encrypted-media=(), execution-while-not-rendered=(), execution-while-out-of-viewport=(), fullscreen=(), geolocation=(), gyroscope=(), keyboard-map=(), magnetometer=(), microphone=(), midi=(), navigation-override=(), payment=(), picture-in-picture=(), publickey-credentials-get=(), screen-wake-lock=(), sync-xhr=(), usb=(), web-share=(), xr-spatial-tracking=(), clipboard-read=(), gamepad=(), speaker-selection=(), conversion-measurement=(), focus-without-user-activation=(), hid=(), idle-detection=(), interest-cohort=(), serial=(), sync-script=(), trust-token-redemption=(), window-placement=(), vertical-scroll=()",
     "Referrer-Policy": "no-referrer-when-downgrade",
     "Strict-Transport-Security": "max-age=31536000; includeSubDomains",
     "X-Content-Security-Policy": "upgrade-insecure-requests",
     "X-Content-Type-Options": "nosniff",
     "X-Frame-Options": "SAMEORIGIN",
     "X-WebKit-CSP": "upgrade-insecure-requests",
-    "Cache-Control": "max-age=3600, must-revalidate"
+    "Cache-Control": "max-age=3600, must-revalidate",
   });
   next();
 });
 
-app.get("/", async (req, res) => {
-  const shortUrls = await ShortUrl.find();
-  res.render("index", { shortUrls });
+app.get("/", (req, res) => {
+  res.render("index");
 });
 
 app.get("/latest", async (req, res) => {
@@ -60,7 +60,7 @@ app.post("/shortenUrl", async (req, res) => {
       console.log("🦄 Error:", err);
     } else {
       console.log("✅ URL sent to DB:", data);
-      res.status(200).redirect(`/?success=${data.short}`);
+      return res.status(200).redirect(`/?success=${data.short}`);
     }
   });
 });
@@ -72,7 +72,7 @@ app.get("/:shortUrl", async (req, res) => {
   shortUrl.clicks++;
   shortUrl.save();
 
-  res.redirect(shortUrl.full);
+  return res.redirect(shortUrl.full);
 });
 
 app.listen(PORT, () => {

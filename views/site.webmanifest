@@ -1,6 +1,7 @@
 {
     "name": "Gri Links",
-    "short_name": "Gri Links",
+    "short_name": "GriLinks",
+    "description": "Gri Links is for transforming long, ugly links into nice, memorable and trackable short URLs. Use it to shorten links for any social media platforms, blogs, SMS, emails, ads, or pretty much anywhere else you want to share them. After shorterning the URL, you can check how many clicks it received.",
     "icons": [
         {
             "src": "/android-chrome-192x192.png",
@@ -13,7 +14,7 @@
             "type": "image/png"
         }
     ],
-    "theme_color": "#ffffff",
+    "theme_color": "#1095c1",
     "background_color": "#ffffff",
     "display": "standalone"
 }
