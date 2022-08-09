@@ -17,7 +17,7 @@ app.use(express.static(views));
 app.use((req, res, next) => {
   res.set({
     Link: "<https://cdnjs.cloudflare.com/>; rel=preconnect",
-    Link: "<https://cdnjs.cloudflare.com/ajax/libs/picocss/1.5.3/pico.min.css>; rel=preload",
+    Link: "<https://cdnjs.cloudflare.com/ajax/libs/picocss/1.5.3/pico.min.css>; rel=preload; as=style",
     "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept",
     "Access-Control-Allow-Methods": "GET, POST",
     "Access-Control-Allow-Origin": "https://grilink.herokuapp.com/",
