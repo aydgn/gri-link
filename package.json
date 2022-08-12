@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon server.js"
+    "dev": "nodemon server.js -e njk,js,html,css"
   },
   "keywords": [],
   "author": "",
@@ -14,7 +14,7 @@
     "dotenv": "^16.0.1",
     "ejs": "^3.1.8",
     "express": "^4.18.1",
-    "mongoose": "^6.5.1",
+    "mongoose": "^6.5.2",
     "nanoid": "3"
   },
   "devDependencies": {

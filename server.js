@@ -70,7 +70,7 @@ app.post("/shortenUrl", async (req, res) => {
 
 app.get("/:shortUrl", async (req, res) => {
   const shortUrl = await ShortUrl.findOne({ short: req.params.shortUrl });
-  if (!shortUrl) return res.status(404).send('URL not found. <a href="/">Go Back</a>');
+  if (!shortUrl) return res.status(404).send('<h1>⚠️ URL not found. <a href="/">Go Back</a></h1>');
 
   shortUrl.clicks++;
   shortUrl.save();
@@ -78,6 +78,4 @@ app.get("/:shortUrl", async (req, res) => {
   return res.redirect(shortUrl.full);
 });
 
-app.listen(PORT, () => {
-  console.log(`🟢 Server listening on: ▶️ http://localhost:${PORT}`);
-});
+app.listen(PORT, () => console.log(`🟢 Server listening on: ▶️ http://localhost:${PORT}`));
