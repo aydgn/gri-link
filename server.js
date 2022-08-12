@@ -1,8 +1,11 @@
 const express = require("express");
+const compression = require("compression");
 const path = require("path");
 const { nanoid } = require("nanoid");
 
 const app = express();
+app.use(compression());
+
 const views = path.join(__dirname, "./views");
 const PORT = process.env.PORT || 3000;
 
