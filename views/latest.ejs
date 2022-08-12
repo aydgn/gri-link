@@ -54,6 +54,23 @@
         display: flex;
         justify-content: space-between;
       }
+      td a {
+        /* These are technically the same, but use both */
+        overflow-wrap: break-word;
+        word-wrap: break-word;
+
+        -ms-word-break: break-all;
+        /* This is the dangerous one in WebKit, as it breaks things wherever */
+        word-break: break-all;
+        /* Instead use this non-standard one: */
+        word-break: break-word;
+
+        /* Adds a hyphen where the word breaks, if supported (No Blink) */
+        -ms-hyphens: auto;
+        -moz-hyphens: auto;
+        -webkit-hyphens: auto;
+        hyphens: auto;
+      }
     </style>
   </head>
   <body>
@@ -62,7 +79,7 @@
       <div class="container">
         <h1 class="title">Latest Links</h1>
 
-        <table>
+        <table role="grid">
           <thead>
             <tr>
               <th>Link</th>
@@ -73,9 +90,9 @@
           <tbody>
             <% shortUrls.forEach(url => { %>
             <tr>
-              <td><a href="<%= url.full %>"><%= url.full %></a></td>
-              <td class="">
-                <a href="<%= url.short %>"><%= url.short %></a>
+              <td><a href="<%= url.full %>" target="_blank"><%= url.full %></a></td>
+              <td>
+                <a href="<%= url.short %>" target="_blank"><%= url.short %></a>
                 <span
                   style="text-align: center"
                   data-url="<%= url.short %>"
