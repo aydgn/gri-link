@@ -3,6 +3,8 @@ const compression = require("compression");
 const path = require("path");
 const { nanoid } = require("nanoid");
 
+const URL = "https://grilink.herokuapp.com/";
+
 const app = express();
 app.use(compression());
 
@@ -23,7 +25,7 @@ app.use((req, res, next) => {
     Link: "<https://cdnjs.cloudflare.com/ajax/libs/picocss/1.5.3/pico.min.css>; rel=preload; as=style",
     "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept",
     "Access-Control-Allow-Methods": "GET, POST",
-    "Access-Control-Allow-Origin": "https://grilink.herokuapp.com/",
+    "Access-Control-Allow-Origin": URL,
     "Content-Security-Policy": "upgrade-insecure-requests",
     "Permissions-Policy":
       "accelerometer=(), ambient-light-sensor=(), autoplay=(), battery=(), camera=(), cross-origin-isolated=(), display-capture=(), document-domain=(), encrypted-media=(), execution-while-not-rendered=(), execution-while-out-of-viewport=(), fullscreen=(), geolocation=(), gyroscope=(), keyboard-map=(), magnetometer=(), microphone=(), midi=(), navigation-override=(), payment=(), picture-in-picture=(), publickey-credentials-get=(), screen-wake-lock=(), sync-xhr=(), usb=(), web-share=(), xr-spatial-tracking=(), clipboard-read=(), gamepad=(), speaker-selection=(), conversion-measurement=(), focus-without-user-activation=(), hid=(), idle-detection=(), interest-cohort=(), serial=(), sync-script=(), trust-token-redemption=(), window-placement=(), vertical-scroll=()",
@@ -33,12 +35,13 @@ app.use((req, res, next) => {
     "X-Content-Type-Options": "nosniff",
     "X-Frame-Options": "SAMEORIGIN",
     "X-WebKit-CSP": "upgrade-insecure-requests",
-    "Cache-Control": "max-age=3600, must-revalidate",
+    "Cache-Control": "public, max-age=3600, must-revalidate",
   });
   next();
 });
 
 app.get("/", (req, res) => {
+  res.set("Cache-Control", "public, max-age=86400");
   res.render("index");
 });
 

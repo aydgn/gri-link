@@ -2,6 +2,7 @@
     "name": "Gri Links",
     "short_name": "GriLinks",
     "description": "Gri Links is for transforming long, ugly links into nice, memorable and trackable short URLs. Use it to shorten links for any social media platforms, blogs, SMS, emails, ads, or pretty much anywhere else you want to share them. After shorterning the URL, you can check how many clicks it received.",
+    "start_url": "https://grilink.herokuapp.com/",
     "icons": [
         {
             "src": "/android-chrome-192x192.png",
@@ -15,6 +16,6 @@
         }
     ],
     "theme_color": "#1095c1",
-    "background_color": "#ffffff",
+    "background_color": "#484848",
     "display": "standalone"
 }
