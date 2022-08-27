@@ -3,29 +3,27 @@ const compression = require("compression");
 const path = require("path");
 const { nanoid } = require("nanoid");
 
-const URL = "https://grilink.herokuapp.com/";
-
 const app = express();
-app.use(compression());
 
 const views = path.join(__dirname, "./views");
 const PORT = process.env.PORT || 3000;
 
 require("./db");
-
 const ShortUrl = require("./models/shortUrl");
 
 app.set("view engine", "ejs");
 app.use(express.urlencoded({ extended: false }));
+app.use(compression());
 app.use(express.static(views));
 
 app.use((req, res, next) => {
   res.set({
-    Link: "<https://cdnjs.cloudflare.com/>; rel=preconnect",
-    Link: "<https://cdnjs.cloudflare.com/ajax/libs/picocss/1.5.3/pico.min.css>; rel=preload; as=style",
+    Link: [
+      "<https://cdnjs.cloudflare.com/>; rel=preconnect",
+      "<https://cdnjs.cloudflare.com/ajax/libs/picocss/1.5.3/pico.min.css>; rel=preload; as=style"],
     "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept",
     "Access-Control-Allow-Methods": "GET, POST",
-    "Access-Control-Allow-Origin": URL,
+    "Access-Control-Allow-Origin": "https://grilink.herokuapp.com/",
     "Content-Security-Policy": "upgrade-insecure-requests",
     "Permissions-Policy":
       "accelerometer=(), ambient-light-sensor=(), autoplay=(), battery=(), camera=(), cross-origin-isolated=(), display-capture=(), document-domain=(), encrypted-media=(), execution-while-not-rendered=(), execution-while-out-of-viewport=(), fullscreen=(), geolocation=(), gyroscope=(), keyboard-map=(), magnetometer=(), microphone=(), midi=(), navigation-override=(), payment=(), picture-in-picture=(), publickey-credentials-get=(), screen-wake-lock=(), sync-xhr=(), usb=(), web-share=(), xr-spatial-tracking=(), clipboard-read=(), gamepad=(), speaker-selection=(), conversion-measurement=(), focus-without-user-activation=(), hid=(), idle-detection=(), interest-cohort=(), serial=(), sync-script=(), trust-token-redemption=(), window-placement=(), vertical-scroll=()",
@@ -81,4 +79,4 @@ app.get("/:shortUrl", async (req, res) => {
   return res.redirect(shortUrl.full);
 });
 
-app.listen(PORT, () => console.log(`🟢 Server listening on: ▶️ http://localhost:${PORT}`));
+app.listen(PORT, () => console.log(`🟢 Server is running on → http://localhost:${PORT}`));

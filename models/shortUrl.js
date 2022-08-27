@@ -9,6 +9,7 @@ const shortenUrlSchema = new Schema({
   short: {
     type: String,
     required: true,
+    unique: true,
   },
 
   clicks: {
